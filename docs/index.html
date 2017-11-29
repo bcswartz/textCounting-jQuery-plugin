@@ -1,0 +1,132 @@
+---
+layout: default
+---
+
+<style>
+    label {font-weight:bold;}
+    ul {padding-bottom:1.5ex;}
+    li {margin-bottom:.9ex;}
+    h2 {margin-top:.2ex;padding-top:0ex;}
+
+    .warningClass {font-weight:bold;color:red;}
+    .blueText {color:blue;}
+
+    p.demo {padding-bottom:2.5ex;}
+</style>
+
+<form name="textCountingDemo" id="textCountingDemo" method="post" action="none">
+
+    <h2>jQuery textCounting Plugin</h2>
+
+    <p>
+        The jQuery textCounting plugin will count the number of characters or 'words' (blocks of characters separated by one or more spaces) in a &lt;textarea&gt; every time a character is typed in the &lt;textarea&gt;, and will display either the number of words or characters in the &lt;textarea&gt; or how many words or characters can still be typed before reaching the set limit.
+
+    </p>
+
+    <p>
+        The default behavior of the plugin is to display the number of characters left before reaching the limit (a character countdown). You can use the plugin for this purpose "as is" (without specifying or changing any settings) if you follow these conventions in your coding:
+
+    <ul>
+        <li>The &lt;textarea&gt; must have an "id" attribute with a unique value and a "maxTextLength" attribute with an integer denoting the character limit.</li>
+        <li>The display element (&lt;p&gt;,&lt;span&gt;,&lt;div&gt;,etc.) where you want the countdown displayed must have an "id" attribute whose value is the combination of the &lt;texarea&gt;'s "id" value and the word "Down".</li>
+
+    </ul>
+
+
+    <p>Here's an example of a &lt;textarea&gt; and a &lt;span&gt; element that fit the convention:</p>
+
+    <p style="background-color:#cccccc;">
+        &lt;textarea id="comments" maxTextLength="1000" rows="4" cols="60"&gt;&lt;/textarea&gt;<br />
+
+        &lt;p&gt;Characters left: &lt;span id="commentsDown"&gt;&lt;/span&gt;&lt;/p&gt;
+    </p>
+
+    <p>Because the element ids and the maxTextLength value is specific to each &lt;textarea&gt;, you can use a single call of the plugin to display a countdown for all your &lt;textarea&gt; elements:</p>
+
+
+    <p style="background-color:#cccccc;">
+        &lt;script language="javascript"&gt;<br />
+        &nbsp;&nbsp;$(document).ready(function()<br />
+        &nbsp;&nbsp;&nbsp;&nbsp;$(":input[type=textarea]").textCounting();<br />
+        &nbsp;&nbsp;		});<br />
+        &lt;/script&gt;<br />
+
+    </p>
+
+    <p>If the default plugin behavior is not suitable, the plugin has a number of settings that can be changed.  Here are a few examples:</p>
+
+    <ul>
+        <li>You can change the <strong>countWhat</strong> setting to count "words" instead of "characters."</li>
+        <li>The <strong>countDirection</strong> setting can be set to "up" to count the words/characters in the &lt;textarea&gt;, "down" to count the words/characters left before hitting the limit, or "up,down" to count and display both values.</li>
+
+        <li>Instead of setting the word/character limit in an attribute of the &lt;textarea&gt;, you can pass a comma-delimited list of limits (one per &lt;textarea&gt;) into the <strong>maxLengthList</strong> plugin setting, or you can make use of another jQuery plugin, the <a href="http://plugins.jquery.com/project/metadata" target="_blank">Metadata plugin</a>, and set the limit in a block of metadata within the &lt;textarea&gt;'s "class" attribute.</li>
+        <li>You can set the plugin to apply a particular CSS class to the element that displays the current count when the limit has been exceeded with the <strong>lengthExceededClass</strong> setting.</li>
+
+    </ul>
+
+    <p>
+        The downloadable plugin .zip file contains a heavily-documented version of the plugin (where you can read more details about all of the settings and how to change them) for use in development, as well as a minified version for use in production.
+    </p>
+
+    <p>
+        <a href="http://www.thoughtdelimited.org/thoughts/demos/textCounting/textCounting1.1.zip">Download the jQuery textCounting plugin .zip file.</a>
+    </p>
+
+    <p>
+        Below is a demonstration of the plugin in action.  You can use the "View Source" option of your browser to inspect this page and see how the demo is coded.
+
+    </p>
+    <br />
+    <hr />
+
+    <p class="demo">
+        <label for="tBoxOne" id="lbl_tBoxOne">Textarea One:</label><br />
+        <textarea class="" name="tBoxOne" id="tBoxOne" maxTextLength="25" rows="2" cols="50">default overflow</textarea><br />
+        Characters left: <span id="tBoxOneDown">0</span>
+    </p>
+
+    <p class="demo">
+        <label for="tBoxTwo" id="lbl_tBoxTwo">Textarea Two:</label><br />
+        <textarea class="{maxLengthSource: 'metadata', maxTextLength:20, countDirection:'up,down', targetModifier:'upCount,downCount'}" name="tBoxTwo" id="tBoxTwo" maxLength="5" rows="2" cols="50"></textarea><br />
+        Characters: <span id="tBoxTwoupCount">0</span> | Characters left: <span id="tBoxTwodownCount">0</span>
+    </p>
+
+    <p class="demo">
+
+        <label for="tBoxThree" id="lbl_tBoxThree">Textarea Three:</label><br />
+        <textarea class="{countWhat: 'words', targetModifierType:'id', countDirection:'up,down', targetModifier:'wordCount,wordsLeft'}" name="tBoxThree" id="tBoxThree" rows="2" cols="50"></textarea><br />
+        Words: <span id="wordCount">0</span> | Words left: <span id="wordsLeft">0</span>
+    </p>
+
+</form>
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<script type="text/javascript" src="jquery.textCounting.min.js"></script>
+<script type="text/javascript" src="assets/javascript/jquery.metadata.js"></script>
+
+<script language="javascript">
+    $(document).ready(function() {
+
+        $.fn.textCounting.defaults.lengthExceededClass= "warningClass";
+
+        var mainSettings= {
+            excludeIds: "tBoxThree",
+        };
+
+        $(":input[type=textarea]").textCounting(mainSettings);
+
+        var otherSettings= {
+            maxLengthSource: "list",
+            maxLengthList: "5",
+            countWhat: 'words',
+            targetModifierType:'id',
+            countDirection:'up,down',
+            targetModifier:'wordCount,wordsLeft'
+        }
+
+        $("#tBoxThree").textCounting(otherSettings);
+
+
+    });
+</script>
