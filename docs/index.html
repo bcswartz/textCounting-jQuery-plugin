@@ -3,6 +3,7 @@ layout: default
 ---
 
 <style>
+    p.codeblock { background-color:#ffffcc; padding:10px; border-radius:5px; }
     label {font-weight:bold;}
     ul {padding-bottom:1.5ex;}
     li {margin-bottom:.9ex;}
@@ -35,7 +36,7 @@ layout: default
 
     <p>Here's an example of a &lt;textarea&gt; and a &lt;span&gt; element that fit the convention:</p>
 
-    <p style="background-color:#cccccc;">
+    <p class="codeblock">
         &lt;textarea id="comments" maxTextLength="1000" rows="4" cols="60"&gt;&lt;/textarea&gt;<br />
 
         &lt;p&gt;Characters left: &lt;span id="commentsDown"&gt;&lt;/span&gt;&lt;/p&gt;
@@ -44,7 +45,7 @@ layout: default
     <p>Because the element ids and the maxTextLength value is specific to each &lt;textarea&gt;, you can use a single call of the plugin to display a countdown for all your &lt;textarea&gt; elements:</p>
 
 
-    <p style="background-color:#cccccc;">
+    <p class="codeblock">
         &lt;script language="javascript"&gt;<br />
         &nbsp;&nbsp;$(document).ready(function()<br />
         &nbsp;&nbsp;&nbsp;&nbsp;$(":input[type=textarea]").textCounting();<br />
@@ -65,16 +66,11 @@ layout: default
     </ul>
 
     <p>
-        The downloadable plugin .zip file contains a heavily-documented version of the plugin (where you can read more details about all of the settings and how to change them) for use in development, as well as a minified version for use in production.
-    </p>
-
-    <p>
-        <a href="http://www.thoughtdelimited.org/thoughts/demos/textCounting/textCounting1.1.zip">Download the jQuery textCounting plugin .zip file.</a>
+        The GitHub repo contains a heavily-documented version of the plugin (where you can read more details about all of the settings and how to change them) for use in development, as well as a minified version for use in production.
     </p>
 
     <p>
         Below is a demonstration of the plugin in action.  You can use the "View Source" option of your browser to inspect this page and see how the demo is coded.
-
     </p>
     <br />
     <hr />
@@ -87,7 +83,7 @@ layout: default
 
     <p class="demo">
         <label for="tBoxTwo" id="lbl_tBoxTwo">Textarea Two:</label><br />
-        <textarea class="{maxLengthSource: 'metadata', maxTextLength:20, countDirection:'up,down', targetModifier:'upCount,downCount'}" name="tBoxTwo" id="tBoxTwo" maxLength="5" rows="2" cols="50"></textarea><br />
+        <textarea class="{maxLengthSource: 'metadata', maxTextLength:20, countDirection:'up,down', targetModifier:'upCount,downCount'}" name="tBoxTwo" id="tBoxTwo" rows="2" cols="50"></textarea><br />
         Characters: <span id="tBoxTwoupCount">0</span> | Characters left: <span id="tBoxTwodownCount">0</span>
     </p>
 
@@ -102,7 +98,7 @@ layout: default
 
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.textCounting.min.js"></script>
+<script type="text/javascript" src="assets/javascript/jquery.textCounting.min.js"></script>
 <script type="text/javascript" src="assets/javascript/jquery.metadata.js"></script>
 
 <script language="javascript">
