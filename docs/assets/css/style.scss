@@ -1,0 +1,31 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.page-header {
+  padding: 2rem 6rem !important;
+}
+
+p.codeblock {
+  background-color: #ffffcc;
+  border-radius: 5px;
+  font-size: 75%;
+  padding: 10px;
+}
+label { font-weight: bold; }
+ul { padding-bottom: 1.5ex; }
+li { margin-bottom: .9ex; }
+h2 {
+  margin-top: .2ex;
+  padding-top: 0ex;
+}
+
+.warningClass {
+  font-weight: bold;
+  color: red;
+}
+
+.blueText { color: blue; }
+
+p.demo { padding-bottom: 5.5ex; }
